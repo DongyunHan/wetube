@@ -1,3 +1,7 @@
+// when package.json has error
+// the commands with starting npm
+// does not work. It will show errors.
+
 {
   "name": "wetube",
   "version": "1.0.0",
@@ -8,12 +12,19 @@
   },
   "author": "Dongyun Han",
   "license": "ISC",
+
+  // dependencies
+  // modules which my project have dependency on
   "dependencies": {
     "@babel/core": "^7.4.4",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.3",
     "express": "^4.16.4"
   },
+
+  // devDependencies 
+  // modules which my project do not have depedency 
+  // modules which we, programmers need for better programming experience
   "devDependencies": {
     "nodemon": "^1.18.11"
   }
