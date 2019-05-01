@@ -25,6 +25,7 @@
   // devDependencies 
   // modules which my project do not have depedency 
   // modules which we, programmers need for better programming experience
+  // (we can install this devDependencies with npm install ~~ -D)
   "devDependencies": {
     "nodemon": "^1.18.11"
   }
