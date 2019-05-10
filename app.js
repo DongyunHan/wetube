@@ -17,15 +17,36 @@ import cookieParser from "cookie-parser";
 // body-parser for handling data on server from user
 import bodyParser from "body-parser";
 import { builtinModules } from "module";
-import { userRouter } from "./router";
+import userRouter from "./routers/userRouter";
+import videoRouter from "./routers/videoRouter";
+import globalRouter from "./routers/globalRouter";
+import routes from "./routes";
 
 const app = express();
-const handleMiddleHome = (req, res, next) => {
-    console.log("Wow fucking, I am in middle");
-    next();
-}
-const handleHome = (req, res) => res.send("Hello Main: Avengers Assemble from ass");
-const handleProfile = (req, res) => res.send("Hello Thanos : Avengers EndGame");
+
+app.set("view engine", "pug");
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(helmet());
+app.use(morgan("combined"));
+
+// app.use("/", globalRouter);
+// app.use("/users", userRouter);
+// app.use("/videos", videoRouter);
+app.use(routes.home, globalRouter);
+app.use(routes.users, userRouter);
+app.use(routes.videos, videoRouter);
+
+export default app;
+
+// const handleMiddleHome = (req, res, next) => {
+//     console.log("Wow fucking, I am in middle");
+//     next();
+// }
+// const handleHome = (req, res) => res.send("Hello Main: Avengers Assemble from ass");
+// const handleProfile = (req, res) => res.send("Hello Thanos : Avengers EndGame");
+
 // function handleListening(){
 //     console.log(`listening on: http://localhost:${PORT}`);
 // }
@@ -43,18 +64,10 @@ const handleProfile = (req, res) => res.send("Hello Thanos : Avengers EndGame");
 // the way how set middleware globally
 // app.use(handleMiddleHome);
 //***********************************************//
-// Remember 
+// Remember
 // the codes works in order from top to bottom
 //***********************************************//
-app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : true}));
-app.use(helmet());
-app.use(morgan("combined"));
 
 // app.get("/", handleMiddleHome, handleHome);
-app.get("/", handleHome);
-app.get("/profile", handleProfile);
-app.use("/user", userRouter);
-
-export default app;
+// app.get("/", handleHome);
+// app.get("/profile", handleProfile);
