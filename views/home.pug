@@ -1,4 +1,12 @@
 extends layouts/main
+include mixins/videoBlock
 
 block content
-    p hello!! fucking cool
+    .videos
+        h1 video
+        each video in videos
+            +videoBlock(video)
+            //- +videoBlock({
+            //-     title: 'hello'
+            //- })
+            //- h1 #{video.title}

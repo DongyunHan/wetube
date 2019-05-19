@@ -1,4 +1,11 @@
 extends layouts/main
 
 block content
-    p upkoadVideo~
+    .form-container    
+        form(action=routes.uploadVideo, method="post")
+            |Video File 
+            input(type="file", id="videoFile", name="videoFile") 
+            input(type="text", name="videoTitle", placeholder="Title")
+            input(tpye="textarea", name="videoDescription", placeholder="Description")
+            input(type="submit", value="Upload Video")
+
